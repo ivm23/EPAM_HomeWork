@@ -7,7 +7,7 @@ public class TaskFive {
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                array[i][j] = (i == j || i == (N - j - 1) ? 1 : 0);
+                array[i][j] = i == j || i == (N - j - 1) ? 1 : 0;
                 System.out.printf("%d ", array[i][j]);
             }
             System.out.println();
