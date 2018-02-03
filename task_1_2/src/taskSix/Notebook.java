@@ -1,6 +1,4 @@
-package task_6;
-
-import task_6.Note;
+package taskSix;
 
 /**
  * <p>Класс служит для хранения Записей, которые хранятся в массиве.</p?
@@ -9,7 +7,6 @@ import task_6.Note;
 public class Notebook {
     public Notebook() {
         notes = new Note[0];
-        size = 0;
     }
 
     private Note[] notes;
@@ -20,25 +17,42 @@ public class Notebook {
      * @param noteForAdd содержит запись, которую необходимо добавить.
      */
     public void addNote(Note noteForAdd) {
-        Note[] temp = notes;
-        notes = new Note[++size];
+        ++size;
 
-        for (int i = 0; i < size - 1; ++i) {
-            notes[i] = temp[i];
+        if (notes.length < size) {
+            Note[] temp = notes;
+            notes = new Note[size * 2];
+            for (int i = 0; i < size - 1; ++i) {
+                notes[i] = temp[i];
+            }
         }
+
         notes[size - 1] = noteForAdd;
     }
 
     /**
      * <p>Метод позволяет удалить последний элемент.</p>
      */
-    public void deleteNote() {
-        if (size > 0) {
-            Note[] temp = notes;
-            notes = new Note[--size];
-            for (int i = 0; i < size; ++i) {
-                notes[i] = temp[i];
+    public void deleteNote(int index) {
+        if (0 < size && 0 <= index && index < size) {
+            if (size * 2 <= notes.length) {
+                Note[] temp = notes;
+
+                notes = new Note[size - 1];
+
+                int j = 0;
+                for (int i = 0; i < size; ++i) {
+                    if (i != index) {
+                        notes[i] = temp[i];
+                        ++j;
+                    }
+                }
             }
+            else
+                for (int i = index; i < size - 1; ++i) {
+                notes[i] = notes[i+1];
+                }
+            --size;
         }
     }
 

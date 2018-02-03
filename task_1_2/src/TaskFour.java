@@ -1,11 +1,17 @@
 import java.util.Scanner;
 
-public class task_4 {
+public class TaskFour {
     public static void main(String[] args) {
         int n;
         Scanner in = new Scanner(System.in);
         System.out.println("Введите количество элементов массива:");
         n = in.nextInt();
+
+        while ( n <= 0) {
+            System.out.println("Количество элементов не может быть отрицательным, введите количество элементов массива:");
+            n = in.nextInt();
+        }
+
         double [] array = new double[n];
 
         System.out.println("Введите элементы массива:");
