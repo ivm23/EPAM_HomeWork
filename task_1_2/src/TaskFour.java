@@ -22,7 +22,7 @@ public class TaskFour {
         double max = array[0] + array[n-1];
 
         for (int i = 1; i < (n - 1) / 2; ++i) {
-            if (array[i] + array[n - i - 1] < max) {
+            if (array[i] + array[n - i - 1] > max) {
                 max = array[i] + array[n - i - 1];
             }
         }
