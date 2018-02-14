@@ -16,7 +16,7 @@ public class App {
 
         Saxophone sax = new Saxophone("SaxophoneBrand");
         sax.play();
-        Music musicSax = new Music("SSSS");
+        Music musicSax = new Music("SSSSS");
         sax.playMusic("settingSax", musicSax);
         sax.play();
         System.out.print("Brand: ");
