@@ -11,11 +11,25 @@ public class ElectricGuitar extends Guitar {
      * музыка инструмента по умолчанию
      * Инкапсуляция
      */
-    private Music music = new Music("E-l-e-c-t-r-i-c G-u-i-t-a-r!");
+    private Music music;
+
+    /**
+     * коструктор: установка количества струн и бренда
+     * Наследование
+     *
+     * @param brand бренд электронной гитары
+     */
+    public ElectricGuitar(String brand) {
+        super(brand);
+        super.setCountOfString(5);
+        music = new Music("E-l-e-c-t-r-i-c G-u-i-t-a-r!");
+    }
+
     /**
      * Полиморфизм
+     *
      * @param setting настройки инструмента
-     * @param music музыка, которую инструмсент будет играть
+     * @param music   музыка, которую инструмсент будет играть
      */
     @Override
     public void tune(String setting, Music music) {
@@ -30,6 +44,7 @@ public class ElectricGuitar extends Guitar {
     public void playBass() {
         System.out.println(" BAAAAAAAASS");
     }
+
     /**
      * Полиморфизм
      * метод для воспроизведения музыки
@@ -40,14 +55,5 @@ public class ElectricGuitar extends Guitar {
         playBass();
     }
 
-    /**
-     * коструктор: установка количества струн и бренда
-     * Наследование
-     * @param brand бренд электронной гитары
-     *
-     */
-    public ElectricGuitar(String brand) {
-        super(brand);
-        super.setCountOfString(5);
-    }
+
 }

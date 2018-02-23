@@ -14,12 +14,14 @@ PercussionInstrument implements MusicalInstrument {
     private int rhythm;
 
     abstract public void tune(String setting, Music music);
+
     abstract public void play();
 
     /**
      * Полиморфизм
+     *
      * @param setting настройки инструмента
-     * @param music музыка, которую инструмсент будет играть
+     * @param music   музыка, которую инструмсент будет играть
      */
     public void playMusic(String setting, Music music) {
         tune(setting, music);
@@ -28,7 +30,6 @@ PercussionInstrument implements MusicalInstrument {
     }
 
     /**
-     *
      * @return установленный ритм для данного инструмента
      */
     public int getRhythm() {
@@ -36,7 +37,6 @@ PercussionInstrument implements MusicalInstrument {
     }
 
     /**
-     *
      * @param rhythm ритм, который хотим установить для данного инструмента
      */
     public void makeRhythm(int rhythm) {

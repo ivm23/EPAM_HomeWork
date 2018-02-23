@@ -15,8 +15,9 @@ public class Drum extends PercussionInstrument {
 
     /**
      * Полиморфизм
+     *
      * @param setting настройки инструмента
-     * @param music музыка, которую инструмсент будет играть
+     * @param music   музыка, которую инструмсент будет играть
      */
     @Override
     public void tune(String setting, Music music) {
@@ -29,7 +30,7 @@ public class Drum extends PercussionInstrument {
      * метод для воспроизведения музыки
      */
     @Override
-    public void play(){
+    public void play() {
         System.out.println("Drum play: " + music.getMusic() + " with rhythm: " + super.getRhythm());
     }
 

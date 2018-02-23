@@ -11,12 +11,23 @@ public class Horn extends WindInstrument {
      * музыка инструмента по умолчанию
      * Инкапсуляция
      */
-    private Music music = new Music("H-o-r-n");
+    private Music music;
+
+    /**
+     * Наследование
+     *
+     * @param brand бренд Горна
+     */
+    public Horn(String brand) {
+        super(brand);
+        music = new Music("H-o-r-n");
+    }
 
     /**
      * Полиморфизм
+     *
      * @param setting настройки инструмента
-     * @param music музыка, которую инструмсент будет играть
+     * @param music   музыка, которую инструмсент будет играть
      */
     @Override
     public void tune(String setting, Music music) {
@@ -24,6 +35,7 @@ public class Horn extends WindInstrument {
         System.out.println("Setting Horn: " + setting);
         super.setSetting(setting);
     }
+
     /**
      * Полиморфизм
      * метод для воспроизведения музыки
@@ -33,11 +45,5 @@ public class Horn extends WindInstrument {
         System.out.println("Horn play: " + music.getMusic());
         music.setMusic("H-o-r-n");
     }
-    /**
-     * Наследование
-     * @param brand бренд Горна
-     */
-    public Horn(String brand) {
-        super(brand);
-    }
+
 }

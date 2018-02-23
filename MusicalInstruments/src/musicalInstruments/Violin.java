@@ -6,18 +6,29 @@ import music.Music;
  * класс для описания виолончели
  * Наследование
  */
-public class Violin extends StringeInstrument{
+public class Violin extends StringeInstrument {
     /**
      * музыка инструмента по умолчанию
      * Инкапсуляция
      */
-    private Music music = new Music("V-i-o-l-i-n");
+    private Music music;
 
+    /**
+     * Наследование
+     *
+     * @param brand бренд виолончели
+     */
+    public Violin(String brand) {
+
+        super(brand);
+        music = new Music("V-i-o-l-i-n");
+    }
 
     /**
      * Полиморфизм
+     *
      * @param setting настройки инструмента
-     * @param music музыка, которую инструмсент будет играть
+     * @param music   музыка, которую инструмсент будет играть
      */
     @Override
     public void tune(String setting, Music music) {
@@ -25,6 +36,7 @@ public class Violin extends StringeInstrument{
         System.out.println("Violin setting: " + setting);
         super.setSetting(setting);
     }
+
     /**
      * Полиморфизм
      * метод для воспроизведения музыки
@@ -34,11 +46,5 @@ public class Violin extends StringeInstrument{
         System.out.println("Violin play: " + music.getMusic());
     }
 
-    /**
-     * Наследование
-     * @param brand бренд виолончели
-     */
-    public Violin(String brand) {
-        super(brand);
-    }
+
 }
