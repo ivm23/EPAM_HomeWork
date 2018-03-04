@@ -14,7 +14,7 @@ public class PenToStringTest {
     private Pen penWithBrandColorPrice;
 
     @Before
-    public void SetUp() {
+    public void setUp() {
         penWithDefConstructor = new Pen();
         penWithColor = new Pen(Color.GREEN);
         penWithColorAndPrice = new Pen(Color.BLUE, 178.456);

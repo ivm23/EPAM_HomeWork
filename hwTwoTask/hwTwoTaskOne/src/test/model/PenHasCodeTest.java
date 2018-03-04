@@ -15,7 +15,7 @@ public class PenHasCodeTest {
 
 
     @Before
-    public void SetUp() {
+    public void setUp() {
         firstPen = new Pen("brand", Color.RED, 10.3);
         secondPen = new Pen("brand", Color.RED, 10.3);
         firstPenWithDefConstructor = new Pen();
