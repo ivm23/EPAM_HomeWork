@@ -1,4 +1,6 @@
-package main.model;
+package main.model.OfficeSupplies.MeasuringOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public class Protractor extends MeasuringOfficeSupplies {
     private double radius;

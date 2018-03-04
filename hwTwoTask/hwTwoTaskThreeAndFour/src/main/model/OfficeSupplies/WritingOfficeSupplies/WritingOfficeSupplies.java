@@ -1,4 +1,7 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSupplies;
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public abstract class WritingOfficeSupplies extends OfficeSupplies {
     private Color color;
@@ -12,6 +15,7 @@ public abstract class WritingOfficeSupplies extends OfficeSupplies {
         super(price, officeSuppliesName);
         this.color = color;
     }
+
     public enum Color {
         GREEN,
         RED,

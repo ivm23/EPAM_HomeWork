@@ -1,4 +1,6 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public class Pencil extends WritingOfficeSupplies {
     private String rigidity;

@@ -1,4 +1,6 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public class PenWithCapNotAutoPen extends Exception {
     private OfficeSuppliesName nameOfficeSupplies;
@@ -8,7 +10,7 @@ public class PenWithCapNotAutoPen extends Exception {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "PenWithCapNotAutoPen[ " + nameOfficeSupplies + " is not AutoPen]";
     }
 }

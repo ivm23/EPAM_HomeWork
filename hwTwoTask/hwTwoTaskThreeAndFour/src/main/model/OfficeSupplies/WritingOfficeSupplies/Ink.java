@@ -1,4 +1,4 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
 
 public enum Ink {
     BALLPOINT,

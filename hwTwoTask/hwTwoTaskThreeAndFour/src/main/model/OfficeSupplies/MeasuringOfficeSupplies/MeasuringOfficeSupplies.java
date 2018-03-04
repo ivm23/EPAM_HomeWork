@@ -1,20 +1,23 @@
-package main.model;
+package main.model.OfficeSupplies.MeasuringOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSupplies;
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public abstract class MeasuringOfficeSupplies extends OfficeSupplies {
     private double length;
-    private boolean isBroken;
+    private boolean broken;
 
     public MeasuringOfficeSupplies(double price, double length, OfficeSuppliesName officeSuppliesName) {
         super(price, officeSuppliesName);
         this.length = length;
     }
 
-    public void setTrueIsBroken(){
-        this.isBroken = true;
+    public void broke() {
+        this.broken = true;
     }
 
     public void setLength(double length) throws MeasuringOfficeSuppliesNotBroken {
-        if (isBroken) {
+        if (broken) {
             this.length = length;
         } else {
             throw new MeasuringOfficeSuppliesNotBroken(getNameOfficeSupplies());

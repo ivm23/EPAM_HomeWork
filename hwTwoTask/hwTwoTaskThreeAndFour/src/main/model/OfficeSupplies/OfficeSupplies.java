@@ -1,6 +1,4 @@
-package main.model;
-
-import java.util.Comparator;
+package main.model.OfficeSupplies;
 
 public abstract class OfficeSupplies {
 
@@ -24,8 +22,5 @@ public abstract class OfficeSupplies {
     public OfficeSuppliesName getNameOfficeSupplies() {
         return officeSuppliesName;
     }
-
-
-
 }
 

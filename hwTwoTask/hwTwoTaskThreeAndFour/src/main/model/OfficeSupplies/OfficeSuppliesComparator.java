@@ -1,4 +1,4 @@
-package main.model;
+package main.model.OfficeSupplies;
 
 import java.util.Comparator;
 
@@ -15,23 +15,23 @@ public class OfficeSuppliesComparator implements Comparator<OfficeSupplies> {
         }
     }
 
-    public static class OfficeSuppliesComparatorByName implements Comparator<OfficeSupplies>{
+    public static class OfficeSuppliesComparatorByName implements Comparator<OfficeSupplies> {
         @Override
         public int compare(OfficeSupplies officeSupplies1, OfficeSupplies officeSupplies2) {
             return officeSupplies1.getNameOfficeSupplies().toString().compareTo(officeSupplies2.getNameOfficeSupplies().toString());
         }
     }
-    public static class OfficeSuppliesComparatorByPrice implements Comparator<OfficeSupplies>{
+
+    public static class OfficeSuppliesComparatorByPrice implements Comparator<OfficeSupplies> {
         @Override
         public int compare(OfficeSupplies officeSupplies1, OfficeSupplies officeSupplies2) {
-            if (officeSupplies1.getPrice()  == officeSupplies2.getPrice() ) {
+            if (officeSupplies1.getPrice() == officeSupplies2.getPrice()) {
                 return 0;
             } else {
                 return (officeSupplies1.getPrice() < officeSupplies2.getPrice() ? -1 : 1);
             }
         }
     }
-
 
 
 }

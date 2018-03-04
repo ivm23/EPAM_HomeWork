@@ -1,12 +1,17 @@
 package test.model;
 
-import main.model.*;
+import main.model.OfficeSupplies.MeasuringOfficeSupplies.Protractor;
+import main.model.OfficeSupplies.MeasuringOfficeSupplies.Ruler;
+import main.model.OfficeSupplies.OfficeSupplies;
+import main.model.OfficeSupplies.OfficeSuppliesComparator;
+import main.model.OfficeSupplies.WritingOfficeSupplies.Ink;
+import main.model.OfficeSupplies.WritingOfficeSupplies.Marker;
+import main.model.OfficeSupplies.WritingOfficeSupplies.Pen;
+import main.model.OfficeSupplies.WritingOfficeSupplies.Pencil;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 import static java.util.Collections.*;

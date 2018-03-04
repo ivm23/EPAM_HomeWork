@@ -1,4 +1,4 @@
-package main.model;
+package main.model.OfficeSupplies;
 
 public enum OfficeSuppliesName {
     RULER,

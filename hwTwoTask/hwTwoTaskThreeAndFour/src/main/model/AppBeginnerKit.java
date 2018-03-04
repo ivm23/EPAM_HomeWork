@@ -1,5 +1,12 @@
 package main.model;
 
+import main.model.OfficeSupplies.MeasuringOfficeSupplies.MeasuringOfficeSupplies;
+import main.model.OfficeSupplies.MeasuringOfficeSupplies.Protractor;
+import main.model.OfficeSupplies.MeasuringOfficeSupplies.Ruler;
+import main.model.OfficeSupplies.OfficeSupplies;
+import main.model.OfficeSupplies.OfficeSuppliesComparator;
+import main.model.OfficeSupplies.WritingOfficeSupplies.*;
+
 import java.util.*;
 
 public class AppBeginnerKit {
@@ -9,7 +16,7 @@ public class AppBeginnerKit {
         Comparator<OfficeSupplies> comparatorByPrice = new OfficeSuppliesComparator.OfficeSuppliesComparatorByPrice();
 
 
-        ArrayList<OfficeSupplies> beginerKit = new ArrayList<OfficeSupplies>();
+        List<OfficeSupplies> beginerKit = new ArrayList<OfficeSupplies>();
 
         OfficeSupplies penNotAuto = new Pen(10, Ink.CAPILLARY, false, WritingOfficeSupplies.Color.GREEN);
         OfficeSupplies penAuto = new Pen(11, Ink.CAPILLARY, true);
@@ -28,19 +35,19 @@ public class AppBeginnerKit {
 
         Collections.sort(beginerKit, comparatorByName);
         System.out.println("After sort by name:");
-        for (OfficeSupplies a : beginerKit) {
-            System.out.println(a.toString());
+        for (OfficeSupplies officeSupplies : beginerKit) {
+            System.out.println(officeSupplies.toString());
         }
 
         System.out.println("After sort by price:");
         Collections.sort(beginerKit, comparatorByPrice);
-        for (OfficeSupplies a : beginerKit) {
-            System.out.println(a.toString());
+        for (OfficeSupplies officeSupplies : beginerKit) {
+            System.out.println(officeSupplies.toString());
         }
         System.out.println("After sort by price and name:");
         Collections.sort(beginerKit, comparator);
-        for (OfficeSupplies a : beginerKit) {
-            System.out.println(a.toString());
+        for (OfficeSupplies officeSupplies : beginerKit) {
+            System.out.println(officeSupplies.toString());
         }
 
     }

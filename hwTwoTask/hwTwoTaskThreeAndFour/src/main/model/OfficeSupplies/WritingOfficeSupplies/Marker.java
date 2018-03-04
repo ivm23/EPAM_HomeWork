@@ -1,8 +1,10 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public class Marker extends WritingOfficeSupplies {
     public int thickness;
-    public boolean withTinsel;
+    public boolean tinsel;
 
     public Marker(double price) {
         super(price, OfficeSuppliesName.MARKER);
@@ -14,10 +16,10 @@ public class Marker extends WritingOfficeSupplies {
         this.thickness = thickness;
     }
 
-    public Marker(double price, int thickness, boolean withTinsel) {
+    public Marker(double price, int thickness, boolean tinsel) {
         super(price, OfficeSuppliesName.MARKER);
         this.thickness = thickness;
-        this.withTinsel = withTinsel;
+        this.tinsel = tinsel;
     }
 
     public int getThickness() {
@@ -28,11 +30,11 @@ public class Marker extends WritingOfficeSupplies {
         this.thickness = thickness;
     }
 
-    public boolean getIsWithTinsel() {
-        return withTinsel;
+    public boolean withTinsel() {
+        return tinsel;
     }
 
     public void useMarker() {
-        System.out.print(withTinsel ? "I'm a magic marker!" : "I'm just a marker");
+        System.out.print(tinsel ? "I'm a magic marker!" : "I'm just a marker");
     }
 }

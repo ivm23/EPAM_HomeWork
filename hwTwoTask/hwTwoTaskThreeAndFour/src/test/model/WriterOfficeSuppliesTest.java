@@ -1,10 +1,12 @@
 package test.model;
 
-import main.model.*;
+import main.model.OfficeSupplies.OfficeSuppliesName;
+import main.model.OfficeSupplies.WritingOfficeSupplies.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class WriterOfficeSuppliesTest {
     private Pen nonAutoPen;
@@ -23,16 +25,17 @@ public class WriterOfficeSuppliesTest {
 
     @Test
     public void getNamePencilShouldReturnPencil() {
-        assertEquals(OfficeSuppliesName.PENCIL ,pencil.getNameOfficeSupplies());
+        assertEquals(OfficeSuppliesName.PENCIL, pencil.getNameOfficeSupplies());
     }
+
     @Test
     public void getNamePenShouldReturnPen() {
-        assertEquals(OfficeSuppliesName.PEN , nonAutoPen.getNameOfficeSupplies());
+        assertEquals(OfficeSuppliesName.PEN, nonAutoPen.getNameOfficeSupplies());
     }
 
     @Test
     public void getFlagPenIsNonAutoShouldReturnFalse() {
-        assertEquals( false, nonAutoPen.isAutoPen());
+        assertFalse(nonAutoPen.isAutoPen());
     }
 
 }

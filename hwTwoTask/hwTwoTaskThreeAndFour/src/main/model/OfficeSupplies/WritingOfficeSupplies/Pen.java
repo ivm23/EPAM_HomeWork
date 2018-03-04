@@ -1,8 +1,10 @@
-package main.model;
+package main.model.OfficeSupplies.WritingOfficeSupplies;
+
+import main.model.OfficeSupplies.OfficeSuppliesName;
 
 public class Pen extends WritingOfficeSupplies {
     private Ink ink;
-    private boolean isAutoPen;
+    private boolean autoPen;
 
     public Pen(double price) {
         super(price, OfficeSuppliesName.PEN);
@@ -14,16 +16,16 @@ public class Pen extends WritingOfficeSupplies {
         this.ink = ink;
     }
 
-    public Pen(double price, Ink ink, boolean isAutoPen) {
+    public Pen(double price, Ink ink, boolean autoPen) {
         super(price, OfficeSuppliesName.PEN);
         this.ink = ink;
-        this.isAutoPen = isAutoPen;
+        this.autoPen = autoPen;
     }
 
-    public Pen(double price, Ink ink, boolean isAutoPen, Color color) {
+    public Pen(double price, Ink ink, boolean autoPen, Color color) {
         super(price, OfficeSuppliesName.PEN, color);
         this.ink = ink;
-        this.isAutoPen = isAutoPen;
+        this.autoPen = autoPen;
     }
 
     public Ink getInk() {
@@ -35,11 +37,13 @@ public class Pen extends WritingOfficeSupplies {
     }
 
     public boolean isAutoPen() {
-        return isAutoPen;
+        return autoPen;
     }
 
     public void setAutoPen() throws PenWithCapNotAutoPen {
-        if (!isAutoPen) throw new PenWithCapNotAutoPen(getNameOfficeSupplies());
-        isAutoPen = true;
+        if (!autoPen) {
+            throw new PenWithCapNotAutoPen(getNameOfficeSupplies());
+        }
+        autoPen = true;
     }
 }
