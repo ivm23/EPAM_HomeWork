@@ -30,43 +30,43 @@ public class StationeryTest {
     }
 
     @Test
-    public void getPricePenShouldReturnTrue() {
+    public void getPricePenShouldReturnPricePen() {
         assertEquals(10, pen.getPrice());
     }
 
     @Test
-    public void getPriceYardstickShouldReturnTrue() {
+    public void getPriceYardstickShouldReturnPriceYardstick() {
         assertEquals(12, yardstick.getPrice());
     }
 
     @Test
-    public void getPriceHolePuncherShouldReturnTrue() {
+    public void getPriceHolePuncherShouldReturnPriceHole() {
         assertEquals(27, holePuncher.getPrice());
     }
 
     @Test
-    public void getBrandPenShouldReturnTrue() {
+    public void getBrandPenShouldReturnBrandPen() {
         assertEquals("brandOfPen", pen.getBrand());
     }
 
     @Test
-    public void getBrandYardstickShouldReturnTrue() {
+    public void getBrandYardstickShouldReturnBrandYardstick() {
         assertEquals("brandOfYardstick", yardstick.getBrand());
     }
 
     @Test
-    public void getBrandHolePuncherShouldReturnTrue() {
+    public void getBrandHolePuncherShouldReturnBrandHole() {
         assertEquals("brandOfHolePuncher", holePuncher.getBrand());
     }
 
 
     @Test
-    public void getColorPenShouldReturnTrue() {
+    public void getColorPenShouldReturnColorPen() {
         assertEquals(Color.BLUE, pen.getColor());
     }
 
     @Test
-    public void getLengthYardstickShouldReturnTrue() {
+    public void getLengthYardstickShouldReturnLengthYardstick() {
         assertEquals(15.5, yardstick.getLength(), 0.0);
     }
 
