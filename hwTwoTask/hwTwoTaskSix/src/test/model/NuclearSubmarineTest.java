@@ -12,7 +12,7 @@ public class NuclearSubmarineTest {
     public void setUp() {
         nuclearSubmarine = new NuclearSubmarine();
     }
-    
+
     @Test
     public void startOfNuclearEngineShouldReturnStringAboutStart() {
         nuclearSubmarine.startNuclearSubmarine();
@@ -31,6 +31,7 @@ public class NuclearSubmarineTest {
     public void startOfNuclearSubmarineShouldReturnStringAboutStart() {
         nuclearSubmarine.startNuclearSubmarine();
         assertEquals("Nuclear submarine has been sent sailing!", nuclearSubmarine.getStatusNuclearSubmarine());
+        assertEquals("Nuclear Engine is start", nuclearSubmarine.getStatusNuclearEngine());
     }
 
 
