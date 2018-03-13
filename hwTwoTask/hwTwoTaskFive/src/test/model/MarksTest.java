@@ -1,5 +1,5 @@
 package test.model;
-import main.model.disciplines.Disciplines;
+
 import main.model.marks.Marks;
 import main.model.marks.MarksComparator;
 import org.junit.Before;
@@ -13,18 +13,18 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class MarksTest {
-    Marks marksForAverage;
-    List<Marks> marksForSort;
+    private Marks marksForAverage;
+    private List<Marks> marksForSort;
 
-    Comparator<Marks> marksComparator = new MarksComparator();
+    private Comparator<Marks> marksComparator = new MarksComparator();
 
     @Before
     public void setUp() {
-        marksForAverage = new Marks(1,2,3,4,5);
+        marksForAverage = new Marks(1, 2, 3, 4, 5);
         marksForSort = new ArrayList<>();
         marksForSort.add(marksForAverage);
-        marksForSort.add(new Marks(2,2));
-        marksForSort.add(new Marks(5,5,5,5));
+        marksForSort.add(new Marks(2, 2));
+        marksForSort.add(new Marks(5, 5, 5, 5));
     }
 
     @Test

@@ -1,20 +1,15 @@
 package main.model.marks;
 
-import main.model.disciplines.Disciplines;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Marks<T extends Number> {
     private List<T> marks;
 
     public Marks(T... marks) {
-        this.marks = new ArrayList<>();
-
-        for (T mark : marks) {
-            this.marks.add(mark);
-        }
-
+        this.marks = new ArrayList<T>();
+        this.marks.addAll(Arrays.asList(marks));
     }
 
     public List<T> getMarks() {

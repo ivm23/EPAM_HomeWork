@@ -1,6 +1,6 @@
-import main.model.disciplines.Disciplines;
+import main.model.disciplines.Discipline;
 import main.model.marks.Marks;
-import main.model.student.DisciplineAndMark;
+import main.model.student.DisciplineRegister;
 import main.model.student.Student;
 import main.model.student.StudentJournalComparator;
 
@@ -9,23 +9,24 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class main {
-    public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) throws Exception {
 
         Student student = new Student("Joe");
-        Comparator<DisciplineAndMark> comparator = new StudentJournalComparator();
+        Comparator<DisciplineRegister> comparator = new StudentJournalComparator();
 
-        Marks marksBiology = new Marks<>( 2.0);
+        Marks marksBiology = new Marks<Double>(1.0,2.0);
 
-        student.setDisciplineWithMarks(Disciplines.BIOLOGY, marksBiology);
-        Marks marksPhysics = new Marks<>( 1);
-        student.setDisciplineWithMarks(Disciplines.PHYSICS, marksPhysics);
+        student.setDisciplineWithMarks(Discipline.BIOLOGY, marksBiology);
 
-        List<DisciplineAndMark> sortedList = new ArrayList(student.getStudentJournal());
+        Marks marksPhysics = new Marks<Integer>(3,2);
+        student.setDisciplineWithMarks(Discipline.PHYSICS, marksPhysics);
+
+        List<DisciplineRegister> sortedList = new ArrayList(student.getStudentJournal());
         Collections.sort(sortedList, comparator);
 
-        for (DisciplineAndMark disciplineAndMark : sortedList){
-            System.out.println(disciplineAndMark.toString());
+        for (DisciplineRegister disciplineRegister : sortedList) {
+            System.out.println(disciplineRegister.toString());
         }
     }
 }

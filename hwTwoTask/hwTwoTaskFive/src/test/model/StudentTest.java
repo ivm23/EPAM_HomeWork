@@ -1,11 +1,12 @@
 package test.model;
-import main.model.disciplines.Disciplines;
+
+import main.model.disciplines.Discipline;
 import main.model.disciplines.DisciplinesComparator;
 import main.model.marks.Marks;
 import main.model.student.Student;
-import main.model.student.StudentHasNotSuchDiscipline;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,21 +16,22 @@ import static org.junit.Assert.assertEquals;
 
 public class StudentTest {
     private Student student;
-    private Comparator<Disciplines> disciplinesComparator = new DisciplinesComparator();
+    private Comparator<Discipline> disciplinesComparator = new DisciplinesComparator();
 
     @Before
-    public void setUp() {
-        student = new Student ("John");
-        Marks marks = new Marks(1,2,3,4,5);
-        student.setDisciplineWithMarks(Disciplines.PHYSICS, marks);
-        student.setDisciplineWithMarks(Disciplines.BIOLOGY, marks);
+    public void setUp() throws Exception {
+        student = new Student("John");
+        Marks marksForPhysics = new Marks<Integer>(1, 2, 3, 4, 5);
+        Marks marksForBiology = new Marks<Double>(1.0, 2.0, 3.0, 4.0, 5.0);
+        student.setDisciplineWithMarks(Discipline.PHYSICS, marksForPhysics);
+        student.setDisciplineWithMarks(Discipline.BIOLOGY, marksForBiology);
     }
 
     @Test
     public void getDisciplinesShouldReturnAllDisciplinesOfStudent() {
-        List<Disciplines> disciplines = new ArrayList<>();
+        List<Discipline> disciplines = new ArrayList<>();
 
-        for (Disciplines discipline: student.getDisciplines()) {
+        for (Discipline discipline : student.getDisciplines()) {
             disciplines.add(discipline);
         }
 
@@ -38,11 +40,12 @@ public class StudentTest {
     }
 
     @Test
-    public void getMarksOfDisciplineShouldReturnMarksForDisciplineBiology() throws StudentHasNotSuchDiscipline {
-        assertEquals("1 2 3 4 5 ", student.getMarksOfDiscipline(Disciplines.BIOLOGY).toString());
+    public void getMarksOfDisciplineShouldReturnMarksForDisciplineBiology() throws Exception {
+        assertEquals("1.0 2.0 3.0 4.0 5.0 ", student.getMarksOfDiscipline(Discipline.BIOLOGY).toString());
     }
-    @Test(expected = StudentHasNotSuchDiscipline.class)
-    public void getMarksOfDisciplineShouldCatchExceptionForNonexistentDiscipline() throws StudentHasNotSuchDiscipline {
-        student.getMarksOfDiscipline(Disciplines.MATHEMATICS);
+
+    @Test(expected = Exception.class)
+    public void getMarksOfDisciplineShouldCatchExceptionForNonexistentDiscipline() throws Exception {
+        student.getMarksOfDiscipline(Discipline.MATHEMATICS);
     }
 }

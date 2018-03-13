@@ -5,14 +5,14 @@ import main.model.marks.MarksComparator;
 
 import java.util.Comparator;
 
-public class StudentJournalComparator implements Comparator<DisciplineAndMark> {
+public class StudentJournalComparator implements Comparator<DisciplineRegister> {
 
     @Override
-    public int compare(DisciplineAndMark disciplineAndMark1, DisciplineAndMark disciplineAndMark2) {
+    public int compare(DisciplineRegister disciplineRegister1, DisciplineRegister disciplineRegister2) {
         Comparator<Marks> marksComparator = new MarksComparator();
 
-        int compareMarks = marksComparator.compare(disciplineAndMark1.getMarks(), disciplineAndMark2.getMarks());
+        int compareMarks = marksComparator.compare(disciplineRegister1.getMarks(), disciplineRegister2.getMarks());
 
-        return (compareMarks == 0 ? disciplineAndMark1.getDisciplines().getName().compareTo(disciplineAndMark2.getDisciplines().getName()) : compareMarks);
+        return (compareMarks == 0 ? disciplineRegister1.getDiscipline().getName().compareTo(disciplineRegister2.getDiscipline().getName()) : compareMarks);
     }
 }

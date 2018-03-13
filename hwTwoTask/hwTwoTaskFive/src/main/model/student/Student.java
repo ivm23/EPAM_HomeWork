@@ -1,43 +1,42 @@
 package main.model.student;
 
-import main.model.disciplines.Disciplines;
+import main.model.disciplines.Discipline;
 import main.model.marks.Marks;
 
 import java.util.*;
 
 public class Student {
     private String name;
-    private Set<DisciplineAndMark> studentJournal;
+    private Set<DisciplineRegister> studentJournal;
 
     public Student(String name) {
         studentJournal = new HashSet<>();
         this.name = name;
     }
 
-    public void setDisciplineWithMarks(Disciplines discipline, Marks marks) {
-
-        studentJournal.add(new DisciplineAndMark(discipline, marks));
+    public void setDisciplineWithMarks(Discipline discipline, Marks marks) throws Exception {
+        studentJournal.add(new DisciplineRegister(discipline, marks));
     }
 
-    public Set<DisciplineAndMark> getStudentJournal() {
+    public Set<DisciplineRegister> getStudentJournal() {
         return studentJournal;
     }
 
-    public Set<Disciplines> getDisciplines() {
-        Set<Disciplines> allDisciplines = new HashSet<>();
-        for (DisciplineAndMark disciplineAndMark : studentJournal) {
-            allDisciplines.add(disciplineAndMark.getDisciplines());
+    public Set<Discipline> getDisciplines() {
+        Set<Discipline> allDisciplines = new HashSet<>();
+        for (DisciplineRegister disciplineRegister : studentJournal) {
+            allDisciplines.add(disciplineRegister.getDiscipline());
         }
         return allDisciplines;
     }
 
-    public Marks getMarksOfDiscipline(Disciplines discipline) throws StudentHasNotSuchDiscipline {
+    public Marks getMarksOfDiscipline(Discipline discipline) throws Exception {
 
-        for (DisciplineAndMark disciplineAndMarks : studentJournal) {
-            if (disciplineAndMarks.getDisciplines() == discipline) {
+        for (DisciplineRegister disciplineAndMarks : studentJournal) {
+            if (disciplineAndMarks.getDiscipline() == discipline) {
                 return disciplineAndMarks.getMarks();
             }
         }
-        throw new StudentHasNotSuchDiscipline(name, discipline.getName());
+        throw new Exception(name + ": " + discipline.getName());
     }
 }
