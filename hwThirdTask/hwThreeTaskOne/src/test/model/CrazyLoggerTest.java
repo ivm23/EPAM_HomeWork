@@ -17,7 +17,7 @@ public class CrazyLoggerTest {
     private SimpleDateFormat dateFormat;
 
     @Before
-    public void SetUp() {
+    public void setUp() {
         crazyLogger = new CrazyLogger();
         dateNow = new Date();
         dateFormat = new SimpleDateFormat("dd-mm-yyyy : hh-mm");
@@ -41,68 +41,68 @@ public class CrazyLoggerTest {
     }
 
     @Test
-    public void SubSequenceShoulReturnSubSequenceFromStartIndexToEndIndex() {
+    public void subSequenceShoulReturnSubSequenceFromStartIndexToEndIndex() {
         crazyLogger.setMessage("hello");
         assertEquals("hello", crazyLogger.subSequence(21, 26));
     }
 
     @Test
-    public void IndexOfShoulReturnIndexOfString() {
+    public void indexOfShoulReturnIndexOfString() {
         crazyLogger.setMessage("hello");
         assertEquals(21, crazyLogger.indexOf("hello"));
     }
 
     @Test
-    public void IndexOfShoulReturnIndexOfStringFromThisIndex() {
+    public void indexOfShoulReturnIndexOfStringFromThisIndex() {
         crazyLogger.setMessage("hlelo");
         assertEquals(24, crazyLogger.indexOf("l", 23));
     }
 
     @Test
-    public void LastIndexOfShoulReturnLastIndexOfString() {
+    public void lastIndexOfShoulReturnLastIndexOfString() {
         crazyLogger.setMessage("hlelol");
         assertEquals(26, crazyLogger.lastIndexOf("l"));
     }
 
     @Test
-    public void LastIndexOfShoulReturnLastIndexFromThisIndex() {
+    public void lastIndexOfShoulReturnLastIndexFromThisIndex() {
         crazyLogger.setMessage("hlleo");
         assertEquals(23, crazyLogger.lastIndexOf("l", 24));
     }
 
     @Test
-    public void ContainShouldReturnTrueForStringContainOtherString() {
+    public void containShouldReturnTrueForStringContainOtherString() {
         crazyLogger.setMessage("hello");
         assertTrue(crazyLogger.contains("ll"));
     }
 
     @Test
-    public void EndsWithShouldReturnTrueForStringEndsWithOtherString() {
+    public void endsWithShouldReturnTrueForStringEndsWithOtherString() {
         crazyLogger.setMessage("hello");
         assertTrue(crazyLogger.endsWith("lo\n"));
     }
 
     @Test
-    public void StartsWithShouldReturnFalseForStringEndsWithOtherString() {
+    public void startsWithShouldReturnFalseForStringEndsWithOtherString() {
         crazyLogger.setMessage("hello");
         assertFalse(crazyLogger.startsWith("hel"));
     }
 
     @Test
-    public void EndsWithShouldReturnTrueFroStringEndsWirhOtherString() {
+    public void endsWithShouldReturnTrueFroStringEndsWirhOtherString() {
         crazyLogger.setMessage("hello");
         assertTrue(crazyLogger.contains("lo"));
     }
 
     @Test
-    public void GetStringOfIndexShouldReturnFirstStringInLog() {
+    public void getStringOfIndexShouldReturnFirstStringInLog() {
         crazyLogger.setMessage("hello");
         crazyLogger.setMessage("message");
         System.out.print(crazyLogger.getStringIndexOf(1));
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void GetStringOfIndexShouldCatchArrayIndexOutOfBoundsExceptionForSecondStringInLog() {
+    public void getStringOfIndexShouldCatchArrayIndexOutOfBoundsExceptionForSecondStringInLog() {
         crazyLogger.setMessage("hello");
         crazyLogger.setMessage("message");
         System.out.print(crazyLogger.getStringIndexOf(2));
