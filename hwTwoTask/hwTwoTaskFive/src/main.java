@@ -13,16 +13,16 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Student student = new Student("Joe");
-        Comparator<DisciplineRegister> comparator = new StudentJournalComparator();
+        Comparator comparator = new StudentJournalComparator();
 
-        Marks marksBiology = new Marks<Double>(1.0,2.0);
+        Marks marksBiology = new Marks<>(1.0,2.0);
 
         student.setDisciplineWithMarks(Discipline.BIOLOGY, marksBiology);
 
-        Marks marksPhysics = new Marks<Integer>(3,2);
+        Marks marksPhysics = new Marks<>(3,2);
         student.setDisciplineWithMarks(Discipline.PHYSICS, marksPhysics);
 
-        List<DisciplineRegister> sortedList = new ArrayList(student.getStudentJournal());
+        List<DisciplineRegister> sortedList = new ArrayList<>(student.getStudentJournal());
         Collections.sort(sortedList, comparator);
 
         for (DisciplineRegister disciplineRegister : sortedList) {
