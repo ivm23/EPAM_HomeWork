@@ -6,46 +6,54 @@ import java.util.regex.Pattern;
 
 public class ByteIOStream {
 
-    public static Pattern getWordsPattern() {
-        return Pattern.compile("byte|short|int|long|char|float|double|boolean|if|else|switch|" +
-                "case|default|while|do|break|continue|for|try|catch|finally|throw|throws|private|protected|" +
-                "public|import|package|class|interface|extends|implements|static|final|void|abstract|native|" +
-                "new|return|this|super|synchronized|volatile|const|goto|instanceof|enum|assert");
-    }
+    public static StringBuilder readFile(String fileName) {
 
-    public static StringBuilder readFile(String fileName) throws FileNotFoundException, IOException {
+        try (BufferedInputStream fromFile = new BufferedInputStream(new FileInputStream(fileName))) {
+            int readBytes = 0;
+            StringBuilder stringsFromBuffer = new StringBuilder();
 
-        BufferedInputStream fromFile = new BufferedInputStream(new FileInputStream(fileName));
-        int readedBytes = 0;
-        StringBuilder stringsFromBuffer = new StringBuilder();
+            while ((readBytes = fromFile.read()) != -1) {
+                stringsFromBuffer.append((char) readBytes);
+            }
 
-        while ((readedBytes = fromFile.read()) != -1) {
-            stringsFromBuffer.append((char) readedBytes);
+            return stringsFromBuffer;
+        } catch (FileNotFoundException e) {
+            System.out.println(String.format("File %s not found", fileName));
+            return null;
+        } catch (IOException ex) {
+            System.out.println("Error with IO");
+            return null;
         }
-
-        fromFile.close();
-        return stringsFromBuffer;
     }
 
-    private static void findAndWriteKeywords(StringBuilder stringBuilderFromBuffer, String outFileName) throws IOException {
-        FileOutputStream outFile = new FileOutputStream(outFileName);
+    private static void findAndWriteKeywords(StringBuilder stringBuilderFromBuffer, String outFileName) {
+        try (FileOutputStream outFile = new FileOutputStream(outFileName)) {
 
-        Matcher matcher = getWordsPattern().matcher(stringBuilderFromBuffer);
-        String stringFromBuffer;
-        int count = 0;
+            Matcher matcher = Main.wordsPattern.matcher(stringBuilderFromBuffer);
+            String stringFromBuffer;
+            int count = 0;
 
-        while (matcher.find()) {
-            stringFromBuffer = stringBuilderFromBuffer.substring(matcher.start(), matcher.end()) + " ";
-            outFile.write(stringFromBuffer.getBytes());
-            count++;
+            while (matcher.find()) {
+                stringFromBuffer = stringBuilderFromBuffer.substring(matcher.start(), matcher.end()) + " ";
+                outFile.write(stringFromBuffer.getBytes());
+                count++;
+            }
+
+            String words = "\nNumber of found keywords: " + count;
+            outFile.write(words.getBytes());
+        } catch (FileNotFoundException e) {
+            System.out.println(String.format("File %s not found", outFileName));
+        } catch (IOException ex) {
+            System.out.println("Error with IO");
         }
-
-        String words = "Number of found keywords: " + count;
-        outFile.write(words.getBytes());
-        outFile.close();
     }
 
-    public static void keywordsSearcher(String fileName, String outFileName) throws FileNotFoundException, IOException {
-            findAndWriteKeywords(readFile(fileName), outFileName);
+    public static void keywordsSearcher(String fileName, String outFileName) throws IOException {
+        StringBuilder readFile = readFile(fileName);
+        if (readFile != null) {
+            findAndWriteKeywords(readFile, outFileName);
+        } else {
+            throw new IOException("Problems with file or IO");
+        }
     }
 }

@@ -12,13 +12,13 @@ public class ByteIOStreamTest {
     }
 
     @Test
-    public void findKeywordsShouldReturnKeywordsAndCountForEampleFile() throws IOException {
-        ByteIOStream.keywordsSearcher("C:\\Users\\marina\\IdeaProjects\\hwFourTaskOne\\src\\Example.java", "keyWords.txt");
-        assertEquals("public class public static void int int double Number of found keywords: 8", getTextFromFile("keyWords.txt"));
+    public void findKeywordsShouldReturnKeywordsAndCountForExampleFile() throws IOException {
+        ByteIOStream.keywordsSearcher("src\\test\\resources\\Example.java", "keyWords.txt");
+        assertEquals("package public class public static void int int double \nNumber of found keywords: 9", getTextFromFile("keyWords.txt"));
     }
 
-    @Test(expected = FileNotFoundException.class)
-    public void findKeywordsShouldCatchFileNotFoundException() throws IOException {
-        ByteIOStream.keywordsSearcher("C:\\Users\\marina\\IdeaProjects\\hwFourTaskOne\\src\\E.java", "keyWords.txt");
+    @Test (expected = IOException.class)
+    public void findKeywordsShouldCatchIOException() throws IOException {
+        ByteIOStream.keywordsSearcher("src\\test\\resources\\E.java", "keyWords.txt");
     }
 }
