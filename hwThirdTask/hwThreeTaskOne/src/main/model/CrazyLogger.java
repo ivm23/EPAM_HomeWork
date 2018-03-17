@@ -1,36 +1,124 @@
 package main.model;
 
+import sun.rmi.server.Activation$ActivationSystemImpl_Stub;
+
 import java.io.DataOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class CrazyLogger {
     private StringBuilder log;
     private SimpleDateFormat dateFormat;
-    private Date dateNow;
 
     public CrazyLogger() {
         log = new StringBuilder();
         dateFormat = new SimpleDateFormat("dd-mm-yyyy : hh-mm");
-        dateNow = new Date();
     }
 
     public CrazyLogger(String message) {
         log = new StringBuilder();
         dateFormat = new SimpleDateFormat("dd-mm-yyyy : hh-mm");
-        dateNow = new Date();
-
-        log.append(dateFormat.format(dateNow) + " - " + message);
+        Calendar date = Calendar.getInstance();
+        log.append(dateFormat.format(date.getTime()) + " - " + message + '\n');
     }
 
     public StringBuilder getLog() {
         return log;
     }
 
-    public void setMessage(String message) {
-        log.append(dateFormat.format(dateNow) + " - " + message + '\n');
+    public void addMessage(String message) {
+        Calendar date = Calendar.getInstance();
+        log.append(dateFormat.format(date.getTime()) + " - " + message + '\n');
+    }
+
+    private void printFindMessages(List<String> listForPrint) {
+        if (listForPrint.size() == 0) {
+            System.out.println("No such information!");
+        } else {
+            System.out.println(String.format("Found %d message(s): ", listForPrint.size()));
+
+            for (String message : listForPrint) {
+                System.out.print(message);
+            }
+        }
+    }
+
+    public int findInfo(String stringForFind) {
+        int index = log.indexOf(stringForFind);
+
+        List<String> findMessages = new ArrayList<>();
+
+        while (index != -1) {
+            int beginIndex = index;
+
+            while (!(beginIndex == 0 || log.charAt(beginIndex) == '\n')) {
+                --beginIndex;
+            }
+            while (!(index == log.length() || log.charAt(index) == '\n')) {
+                ++index;
+            }
+
+            findMessages.add(log.subSequence(beginIndex, index).toString());
+            index = log.indexOf(stringForFind, index);
+        }
+
+        printFindMessages(findMessages);
+
+        return findMessages.size();
+    }
+
+    public int findInfoByDate(Date date) {
+        String stringDate = dateFormat.format(date);
+        return findInfo(stringDate);
+    }
+
+    public int findInfoByDate(int day, int month, int year, int hour, int minute) throws Exception {
+        return findInfo(convertToDate(day, month, year, hour, minute));
+    }
+
+    public String convertToDate(int day, int month, int year, int hour, int minute) throws Exception {
+        if (!(0 <= minute && minute < 60) || !(0 <= hour && hour < 24)) {
+            throw new Exception("Incorrect time!");
+        }
+        if (!(0 < month && month < 13) || !(0 < day && day < 32)) {
+            throw new Exception("Incorrect date!");
+        }
+        if (month == 4 || month == 6 || month == 9 || month == 11 && day > 30) {
+            throw new Exception("Incorrect date!");
+        }
+        if (month == 2 && day > 28) {
+            throw new Exception("Incorrect date!");
+        }
+
+        StringBuilder stringDate = new StringBuilder();
+
+        if (day < 10) {
+            stringDate.append("0");
+        }
+        stringDate.append(day + '.');
+
+        if (month < 10) {
+            stringDate.append("0");
+        }
+        stringDate.append(month + '.');
+        stringDate.append(year + '.');
+
+        if (hour < 10) {
+            stringDate.append("0");
+        }
+        stringDate.append(hour + '.');
+
+        if (minute < 10) {
+            stringDate.append("0");
+        }
+        stringDate.append(minute + '.');
+
+        return stringDate.toString();
     }
 
     public char charAt(int index) {
