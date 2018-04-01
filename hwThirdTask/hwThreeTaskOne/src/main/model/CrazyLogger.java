@@ -5,10 +5,7 @@ import sun.rmi.server.Activation$ActivationSystemImpl_Stub;
 import java.io.DataOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class CrazyLogger {
@@ -36,17 +33,7 @@ public class CrazyLogger {
         log.append(dateFormat.format(date.getTime()) + " - " + message + '\n');
     }
 
-    private void printFindMessages(List<String> listForPrint) {
-        if (listForPrint.size() == 0) {
-            System.out.println("No such information!");
-        } else {
-            System.out.println(String.format("Found %d message(s): ", listForPrint.size()));
 
-            for (String message : listForPrint) {
-                System.out.print(message);
-            }
-        }
-    }
 
     public int findInfo(String stringForFind) {
         int index = log.indexOf(stringForFind);
@@ -59,9 +46,7 @@ public class CrazyLogger {
             while (!(beginIndex == 0 || log.charAt(beginIndex) == '\n')) {
                 --beginIndex;
             }
-            while (!(index == log.length() || log.charAt(index) == '\n')) {
-                ++index;
-            }
+            index = log.indexOf("\n", index);
 
             findMessages.add(log.subSequence(beginIndex, index).toString());
             index = log.indexOf(stringForFind, index);
@@ -82,6 +67,7 @@ public class CrazyLogger {
     }
 
     public String convertToDate(int day, int month, int year, int hour, int minute) throws Exception {
+
         if (!(0 <= minute && minute < 60) || !(0 <= hour && hour < 24)) {
             throw new Exception("Incorrect time!");
         }
@@ -95,30 +81,9 @@ public class CrazyLogger {
             throw new Exception("Incorrect date!");
         }
 
-        StringBuilder stringDate = new StringBuilder();
+        Calendar date = new GregorianCalendar(year, month, day, hour, minute);
 
-        if (day < 10) {
-            stringDate.append("0");
-        }
-        stringDate.append(day + '.');
-
-        if (month < 10) {
-            stringDate.append("0");
-        }
-        stringDate.append(month + '.');
-        stringDate.append(year + '.');
-
-        if (hour < 10) {
-            stringDate.append("0");
-        }
-        stringDate.append(hour + '.');
-
-        if (minute < 10) {
-            stringDate.append("0");
-        }
-        stringDate.append(minute + '.');
-
-        return stringDate.toString();
+        return dateFormat.format(date.getTime());
     }
 
     public char charAt(int index) {
@@ -201,5 +166,16 @@ public class CrazyLogger {
             throw new ArrayIndexOutOfBoundsException("string with such index isn't exist!");
         }
         return log.substring(beginIndex, endIndex);
+    }
+    private void printFindMessages(List<String> listForPrint) {
+        if (listForPrint.size() == 0) {
+            System.out.println("No such information!");
+        } else {
+            System.out.println(String.format("Found %d message(s): ", listForPrint.size()));
+
+            for (String message : listForPrint) {
+                System.out.print(message);
+            }
+        }
     }
 }

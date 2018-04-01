@@ -28,6 +28,8 @@ public class CrazyLoggerTest {
     public void findInfoInLogShouldReturnCountOfFindMessages() {
         crazyLogger.addMessage("Hello");
         crazyLogger.addMessage("HelloWorld");
+        crazyLogger.addMessage("Elloh");
+        crazyLogger.addMessage("Heflo");
         int countOfFindMessages = crazyLogger.findInfo("Hello");
         assertEquals(2, countOfFindMessages);
     }
