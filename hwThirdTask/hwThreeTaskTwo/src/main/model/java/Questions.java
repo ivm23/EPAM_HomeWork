@@ -60,11 +60,7 @@ public class Questions {
                 try {
                     printAnswer(myBundle, in.nextInt());
                 } catch (Exception ex) {
-                    if (answer == 1) {
-                        System.out.println("Такого вопроса не существует!");
-                    } else if (answer == 2) {
-                        System.out.println("Such question isn't exist!");
-                    }
+                    System.out.println(answer == 1 ? "Такого вопроса не существует!" : "Such question isn't exist!");
                 }
             } else if (answer == 2) {
                 if (in.hasNext("Exit")) {
