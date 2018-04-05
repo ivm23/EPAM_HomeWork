@@ -25,7 +25,7 @@ public class PropertiesFileGetterTest {
     }
 
     @Test
-    public void getPropertiesShouldReturnMapWithProperties() {
+    public void getPropertiesShouldReturnPropertiesByKey() {
         propertiesFileGetter.getPropertiesFile(fileName, new Locale("en_US"));
         assertEquals(answerMap.get("1"), PropertiesFileGetter.getProperty("1"));
     }
