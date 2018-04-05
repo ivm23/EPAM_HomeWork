@@ -12,11 +12,11 @@ public class PropertiesFileGetter {
         existBundle = new HashMap<Pair<String, Locale>, ResourceBundle>();
     }
 
-    public static Map getPropertiesMap() {
-        return propertiesMap;
+    public static Object getProperty(String key) {
+        return propertiesMap.get(key);
     }
 
-    public void getProperties(String fileName, Locale locale) {
+    public void getPropertiesFile(String fileName, Locale locale) {
         Pair<String, Locale> fileNameAndLocale = new Pair<>(fileName, locale);
         if (!existBundle.containsKey(fileNameAndLocale)) {
             existBundle.put(fileNameAndLocale, ResourceBundle.getBundle(fileName, locale));

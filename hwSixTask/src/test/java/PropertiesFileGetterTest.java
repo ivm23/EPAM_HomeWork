@@ -21,13 +21,12 @@ public class PropertiesFileGetterTest {
         propertiesFileGetter = new PropertiesFileGetter();
 
         answerMap.put("1", (Object) "1)hello");
-        answerMap.put("2", (Object) "2)world");
-        answerMap.put("3", (Object) "3)how are you?");
+
     }
 
     @Test
     public void getPropertiesShouldReturnMapWithProperties() {
-        propertiesFileGetter.getProperties(fileName, new Locale("en_US"));
-        assertEquals(answerMap, PropertiesFileGetter.getPropertiesMap());
+        propertiesFileGetter.getPropertiesFile(fileName, new Locale("en_US"));
+        assertEquals(answerMap.get("1"), PropertiesFileGetter.getProperty("1"));
     }
 }

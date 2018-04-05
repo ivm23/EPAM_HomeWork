@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         PropertiesFileGetter propertiesFileGetter = new PropertiesFileGetter();
-        propertiesFileGetter.getProperties(str, new Locale("en_US"));
-        System.out.print(PropertiesFileGetter.getPropertiesMap());
+        propertiesFileGetter.getPropertiesFile(str, new Locale("en_US"));
+        System.out.print(PropertiesFileGetter.getProperty("1"));
     }
 }
