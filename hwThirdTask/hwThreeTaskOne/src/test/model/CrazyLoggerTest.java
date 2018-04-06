@@ -30,21 +30,21 @@ public class CrazyLoggerTest {
         crazyLogger.addMessage("HelloWorld");
         crazyLogger.addMessage("Elloh");
         crazyLogger.addMessage("Heflo");
-        int countOfFindMessages = crazyLogger.findInfo("Hello");
+        int countOfFindMessages = crazyLogger.findInfo("Hello").size();
         assertEquals(2, countOfFindMessages);
     }
     @Test
     public void findInfoInLogShouldReturnZero() {
         crazyLogger.addMessage("Hello");
         crazyLogger.addMessage("HelloWorld");
-        int countOfFindMessages = crazyLogger.findInfo("abs");
+        int countOfFindMessages = crazyLogger.findInfo("abs").size();
         assertEquals(0, countOfFindMessages);
     }
 
     @Test
     public void findInfoByDateInLogShouldReturnCountOfFindMessages() {
         crazyLogger.addMessage("Hello");
-        int countOfFindMessages = crazyLogger.findInfoByDate(dateNow);
+        int countOfFindMessages = crazyLogger.findInfoByDate(dateNow).size();
         assertEquals(1, countOfFindMessages);
     }
 

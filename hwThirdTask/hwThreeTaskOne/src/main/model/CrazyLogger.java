@@ -21,7 +21,7 @@ public class CrazyLogger {
         log = new StringBuilder();
         dateFormat = new SimpleDateFormat("dd-mm-yyyy : hh-mm");
         Calendar date = Calendar.getInstance();
-        log.append(dateFormat.format(date.getTime()) + " - " + message + '\n');
+        log.append(dateFormat.format(date.getTime()) + " - " + message + ';');
     }
 
     public StringBuilder getLog() {
@@ -34,8 +34,7 @@ public class CrazyLogger {
     }
 
 
-
-    public int findInfo(String stringForFind) {
+    public List<String> findInfo(String stringForFind) {
         int index = log.indexOf(stringForFind);
 
         List<String> findMessages = new ArrayList<>();
@@ -43,7 +42,7 @@ public class CrazyLogger {
         while (index != -1) {
             int beginIndex = index;
 
-            while (!(beginIndex == 0 || log.charAt(beginIndex) == '\n')) {
+            while (!(beginIndex == 0 || log.charAt(beginIndex) == ';')) {
                 --beginIndex;
             }
             index = log.indexOf("\n", index);
@@ -54,15 +53,15 @@ public class CrazyLogger {
 
         printFindMessages(findMessages);
 
-        return findMessages.size();
+        return findMessages;
     }
 
-    public int findInfoByDate(Date date) {
+    public List<String> findInfoByDate(Date date) {
         String stringDate = dateFormat.format(date);
         return findInfo(stringDate);
     }
 
-    public int findInfoByDate(int day, int month, int year, int hour, int minute) throws Exception {
+    public List<String> findInfoByDate(int day, int month, int year, int hour, int minute) throws Exception {
         return findInfo(convertToDate(day, month, year, hour, minute));
     }
 
