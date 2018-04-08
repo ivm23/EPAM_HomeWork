@@ -1,14 +1,18 @@
 package test.java;
 
+import exceptions.NotFoundKey;
+import exceptions.NotFoundResources;
 import main.java.PropertiesFileGetter;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.MissingResourceException;
+
 import static org.junit.Assert.assertEquals;
-
-import java.util.*;
-
-public class PropertiesFileGetterTest {
+public class PropertiesTest {
     private static String fileName;
     private Map<String, Object> answerMap;
     private PropertiesFileGetter propertiesFileGetter;
@@ -25,19 +29,19 @@ public class PropertiesFileGetterTest {
     }
 
     @Test
-    public void getPropertiesShouldReturnPropertiesByKey() throws Exception {
+    public void getPropertiesShouldReturnPropertiesByKey() throws NotFoundKey, NotFoundResources {
         propertiesFileGetter.getPropertiesFile(fileName, new Locale("en_US"));
         assertEquals(answerMap.get("1"), PropertiesFileGetter.getProperty("1"));
     }
 
-    @Test(expected = MissingResourceException.class)
-    public void getPropertiesShouldCatchMissingResourceExceptionForNotExistingProperties()  {
+    @Test(expected = NotFoundResources.class)
+    public void getPropertiesShouldCatchMissingResourceExceptionForNotExistingProperties() throws NotFoundResources {
         propertiesFileGetter.getPropertiesFile("1", new Locale("bu_po"));
         // если имя будет верное, а локаль нет, то вернется properties по имени
     }
 
-    @Test(expected = Exception.class)
-    public void getPropertiesShouldCatchExceptionForNotExistingKeyInProperties() throws Exception {
+    @Test(expected = NotFoundKey.class)
+    public void getPropertiesShouldCatchExceptionForNotExistingKeyInProperties() throws NotFoundKey, NotFoundResources {
         propertiesFileGetter.getPropertiesFile(fileName, new Locale("en_US"));
         assertEquals("Such key isn't exist!", PropertiesFileGetter.getProperty("4"));
     }
